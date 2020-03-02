@@ -8,8 +8,12 @@ const Card = (props) => {
         .get("https://dog.ceo/api/breeds/image/random")
         .then(res => {
             console.log(res)
-        })
-    })
+        });
+    });
+
+    return {
+        
+    }
 };
 
 const mapStateToProps = () => {
