@@ -1,25 +1,30 @@
+import React from 'react';
 import { connect } from "react-redux";
-import { useEffect } from "react";
-import axios from 'axios';
+import { getImage } from '../actions/Action';
 
-const Card = (props) => {
-    useEffect(() => {
-        axios
-        .get("https://dog.ceo/api/breeds/image/random")
-        .then(res => {
-            console.log(res)
-        });
-    });
+const Card = ({ getImage, image, isFetching, error }) => {
+    if (isFetching) {
+        return <h2> Fetching an image now. :)</h2>
+    }
 
+    if (error) {
+        return <h2>{error}</h2>;
+      }
+
+    return (
+        <div>
+            <h2>Image: {image}</h2>
+            <button onClick={getImage}>Get new image</button>
+        </div>
+    )
+};
+
+const mapStateToProps = state => {
     return {
-        
+        image: state.image,
+        isFetching: state.isFetching,
+        error: state.error
     }
 };
 
-const mapStateToProps = () => {
-    return {
-
-    }
-};
-
-export default connect(mapStateToProps, {})(Card);
+export default connect(mapStateToProps)(Card);
