@@ -11,7 +11,7 @@ export const getImage = () => dispatch => {
     .get('https://dog.ceo/api/breeds/image/random')
     .then(res => {
         console.log('res', res);
-        dispatch({ type: FETCHING_IMAGE_SUCCESS, payload: res.data.image });
+        dispatch({ type: FETCHING_IMAGE_SUCCESS, payload: res.data.message });
     })
     .catch(err => {
         console.log('err', err)

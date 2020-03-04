@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
 import { getImage } from '../actions/Action';
+import styled from 'styled-components';
 
 const Card = ({ getImage, image, isFetching, error }) => {
     if (isFetching) {
@@ -13,11 +14,15 @@ const Card = ({ getImage, image, isFetching, error }) => {
 
     return (
         <div>
-            <h2>Image: {image}</h2>
+            <H2>Image: <img src={image} /></H2>
             <button onClick={getImage}>Get new image</button>
         </div>
     )
 };
+
+const H2 = styled.h2`
+    color: lightblue;
+`
 
 const mapStateToProps = state => {
     return {
@@ -27,4 +32,4 @@ const mapStateToProps = state => {
     }
 };
 
-export default connect(mapStateToProps)(Card);
+export default connect(mapStateToProps, {getImage})(Card);
